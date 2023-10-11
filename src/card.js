@@ -1,5 +1,5 @@
 createCard = (id, question, answers, correctAnswer) => {
-  var card = {
+  const card = {
     id: id,
     question: question,
     answers: answers,
