@@ -70,12 +70,28 @@ describe("round", function () {
     const round = createRound(deck);
     expect(round.deck).to.deep.equal([card1, card2, card3]);
   })
-  it('should have a currentCard', () => {
+  it('should have a currentCard that defaults to the first card of the deck', () => {
     const card1 = createCard(1, 'What is Robbie\'s favorite animal?', ['sea otter', 'pug', 'capybara'], 'sea otter');
     const card2 = createCard(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
     const card3 = createCard(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
     const deck = createDeck([card1, card2, card3]);
     const round = createRound(deck);
     expect(round.currentCard).to.equal(card1);
+  })
+  it('should have a turns property that start at 0', () => {
+    const card1 = createCard(1, 'What is Robbie\'s favorite animal?', ['sea otter', 'pug', 'capybara'], 'sea otter');
+    const card2 = createCard(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
+    const card3 = createCard(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
+    const deck = createDeck([card1, card2, card3]);
+    const round = createRound(deck);
+    expect(round.turns).to.equal(0); 
+  })
+  it('should have an incorrect guesses proeperty that begins as an empty array', () => {
+    const card1 = createCard(1, 'What is Robbie\'s favorite animal?', ['sea otter', 'pug', 'capybara'], 'sea otter');
+    const card2 = createCard(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
+    const card3 = createCard(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
+    const deck = createDeck([card1, card2, card3]);
+    const round = createRound(deck);
+    expect(round).to.have.property("incorrectGuesses").with.lengthOf(0);
   })
 })
