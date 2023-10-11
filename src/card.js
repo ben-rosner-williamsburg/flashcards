@@ -17,7 +17,15 @@ evaluateGuess = (guess, correctAnswer) => {
     return `Incorrect!`;
   }
 }
+
+createDeck = (cards) => {
+  const deck = [];
+  deck.push(cards);
+  return deck;
+}
+
 module.exports = {
   createCard,
-  evaluateGuess 
+  evaluateGuess,
+  createDeck
 };
