@@ -2,14 +2,15 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const { createCard, evaluateGuess, createDeck, countCards, createRound } = require('../src/card');
+const { testData } = require('..test/Data-test.js')
 
 describe('card', function () {
   it('should be a function', function () {
     expect(createCard).to.be.a('function');
   });
 
-  it('should create a card and its properties', function () {
-    const card = createCard(1, 'What allows you to define a set of related information using key-value pairs?', ['object', 'array', 'function'], 'object');
+  it('should create a card and its properties', function (testData) {
+    const card = createCard(testData[0].id, testData[0].question, testData[0].answers, testData[0].correctAnswer);
 
     expect(card.id).to.equal(1);
     expect(card.question).to.equal('What allows you to define a set of related information using key-value pairs?');
