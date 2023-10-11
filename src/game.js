@@ -10,5 +10,4 @@ function printMessage(deck) {
 function printQuestion(round) {
   util.main(round);
 }
-
-module.exports = { printMessage, printQuestion };
+module.exports = { printMessage, printQuestion, evaluateGuess};

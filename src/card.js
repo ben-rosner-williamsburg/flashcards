@@ -8,4 +8,16 @@ createCard = (id, question, answers, correctAnswer) => {
   return card;
 }
 
-module.exports = {createCard};
+
+evaluateGuess = (guess, correctAnswer) => {
+  if (guess === correctAnswer) {
+    return `Correct!`;
+  }
+  else {
+    return `Incorrect!`;
+  }
+}
+module.exports = {
+  createCard,
+  evaluateGuess 
+};
