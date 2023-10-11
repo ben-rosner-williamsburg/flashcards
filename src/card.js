@@ -19,13 +19,19 @@ evaluateGuess = (guess, correctAnswer) => {
 }
 
 createDeck = (cards) => {
-  const deck = [];
-  deck.push(cards);
+   const deck = cards.map((card) => {
+    return card;
+  })
   return deck;
+}
+
+countCards = (deck) => {
+  return deck.length;
 }
 
 module.exports = {
   createCard,
   evaluateGuess,
-  createDeck
+  createDeck,
+  countCards
 };
