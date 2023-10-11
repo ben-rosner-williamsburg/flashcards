@@ -34,16 +34,12 @@ const createRound = (deck) => {
     deck: deck,
     currentCard: deck[0],
     turns: 0,
-    incorrectGuesses: [],
-    takeTurn: takeTurn(),
-    calculatePercentCorrect: calculatePercentCorrect(),
-    endRound: endRound()
+    incorrectGuesses: []
   }
   return round;
 }
 
 const takeTurn = (guess, round) => {
-  console.log(round);
   round.turns++;
   round.currentCard = deck[card.id++];
   if (evaluateGuess(guess, correctAnswer) === `Correct`){
