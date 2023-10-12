@@ -1,9 +1,8 @@
 const inquirer = require('inquirer');
-const { takeTurn, endRound } = require('./round');
+const { takeTurn, endRound } = require('./card');
 
 const genList = (round) => {
   let card = round.currentCard;
-  
   let choices = card.answers.map((answer, index) => {
     return {
       key: index,
