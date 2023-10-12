@@ -34,11 +34,11 @@ async function main(round) {
   const getAnswer = await inquirer.prompt(genList(currentRound));
   const getConfirm = await inquirer.prompt(confirmUpdate(getAnswer.answers, round));
 
-    if(!round.currentCard) {
-      endRound(round);
-    } else {
-      main(round);
-    }
+  if (!round.currentCard) {
+    endRound(round);
+  } else {
+    main(round);
+  }
 }
 
 module.exports.main = main;

@@ -2,7 +2,7 @@ const { createDeck, createRound, countCards } = require('./card');
 const util = require('./util');
 
 
-function start(prototypeQuestions){
+function start(prototypeQuestions) {
   const deck = createDeck(prototypeQuestions);
   const round = createRound(deck);
   printMessage(deck);
