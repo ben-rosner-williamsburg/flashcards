@@ -1,7 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const { createCard, evaluateGuess, createDeck, countCards, createRound } = require('../src/card');
+const { createCard, evaluateGuess, createDeck, countCards, createRound, takeTurn, calculatePercentCorrect, endRound } = require('../src/card');
 
 describe('card', function () {
   it('should be a function', function () {
@@ -86,12 +86,92 @@ describe("round", function () {
     const round = createRound(deck);
     expect(round.turns).to.equal(0); 
   })
-  it('should have an incorrect guesses proeperty that begins as an empty array', () => {
+  it('should have an incorrect guesses property that begins as an empty array', () => {
     const card1 = createCard(1, 'What is Robbie\'s favorite animal?', ['sea otter', 'pug', 'capybara'], 'sea otter');
     const card2 = createCard(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
     const card3 = createCard(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
     const deck = createDeck([card1, card2, card3]);
     const round = createRound(deck);
     expect(round).to.have.property("incorrectGuesses").with.lengthOf(0);
+  })
+})
+
+describe("takeTurn", function() {
+  it('should be a function', () => { 
+    expect(takeTurn).to.be.a("function");
+  })
+  it('should increment the turns count', () => {
+    const card1 = createCard(1, 'What is Robbie\'s favorite animal?', ['sea otter', 'pug', 'capybara'], 'sea otter');
+    const card2 = createCard(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
+    const card3 = createCard(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
+    const deck = createDeck([card1, card2, card3]);
+    const round = createRound(deck);
+    takeTurn('sea otter', round);
+    expect(round.turns).to.equal(1)
+  })
+  it('should make the next card the current card', () => {
+    const card1 = createCard(1, 'What is Robbie\'s favorite animal?', ['sea otter', 'pug', 'capybara'], 'sea otter');
+    const card2 = createCard(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
+    const card3 = createCard(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
+    const deck = createDeck([card1, card2, card3]);
+    const round = createRound(deck);
+    takeTurn('sea otter', round);
+    takeTurn('gallbladder', round);
+    expect(round.currentCard.id).to.equal(12)
+  })
+  it('should return a string of correct for all correct guesses', () => {
+    const card1 = createCard(1, 'What is Robbie\'s favorite animal?', ['sea otter', 'pug', 'capybara'], 'sea otter');
+    const card2 = createCard(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
+    const card3 = createCard(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
+    const deck = createDeck([card1, card2, card3]);
+    const round = createRound(deck);
+    const guessResult = takeTurn('sea otter', round);
+    expect(guessResult).to.equal(`Correct!`);
+  })
+  it('should store all incorrect guesses in the incorrect guesses array', () => {
+    const card1 = createCard(1, 'What is Robbie\'s favorite animal?', ['sea otter', 'pug', 'capybara'], 'sea otter');
+    const card2 = createCard(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
+    const card3 = createCard(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
+    const deck = createDeck([card1, card2, card3]);
+    const round = createRound(deck);
+    takeTurn('pug', round);
+    expect(round.incorrectGuesses.length).to.equal(1);
+  })
+  it('should return a string of incorrect for all incorrect guesses', () => {
+    const card1 = createCard(1, 'What is Robbie\'s favorite animal?', ['sea otter', 'pug', 'capybara'], 'sea otter');
+    const card2 = createCard(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
+    const card3 = createCard(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
+    const deck = createDeck([card1, card2, card3]);
+    const round = createRound(deck);
+    const guessResult = takeTurn('pug', round);
+    expect(guessResult).to.equal(`Incorrect!`);
+  })
+})
+
+describe("calculatePercentCorrect", function() {
+  it('should calculate and return the percentage of correct guesses', () => {
+    const card1 = createCard(1, 'What is Robbie\'s favorite animal?', ['sea otter', 'pug', 'capybara'], 'sea otter');
+    const card2 = createCard(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
+    const card3 = createCard(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
+    const deck = createDeck([card1, card2, card3]);
+    const round = createRound(deck);
+    takeTurn('pug', round);
+    takeTurn('gallbladder', round);
+    const percent = calculatePercentCorrect(round)
+    expect(percent).to.equal(50);
+  })
+})
+
+describe('endRound', function() {
+  it('should return a string that has the percentage of correct questions answered', () => {
+    const card1 = createCard(1, 'What is Robbie\'s favorite animal?', ['sea otter', 'pug', 'capybara'], 'sea otter');
+    const card2 = createCard(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
+    const card3 = createCard(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
+    const deck = createDeck([card1, card2, card3]);
+    const round = createRound(deck);
+    takeTurn('pug', round);
+    takeTurn('gallbladder', round);
+    const finishRound = endRound(round)
+    expect(finishRound).to.equal("** Round over! ** You answered 50% of the questions correctly!")
   })
 })
