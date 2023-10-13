@@ -1,58 +1,43 @@
-# FlashCards Starter Kit
+# Flashcards
 
-## Fork This Repo
-
-On the top right corner of this page, click the **Fork** button.
-
-## Setup
-
-Clone down the forked repo (from your GitHub). Since you don't want to name your project "flashcards-starter", you can use an optional argument when you run `git clone` (you replace the `[...]` with the terminal command arguments):
-
-```bash
-git clone [remote-address] [what you want to name the repo]
-```
-
-Once you have cloned the repo, change into the directory and install the library dependencies using the command:
-
-```bash
-npm install
-```
-
-To verify that it is setup correctly, run `npm test` in your terminal. You should have skipped tests in your `card` test file show up.
-
-Running `node index.js` from the root of your project should result in the following message being displayed in your terminal: 
-
-```bash
-Your project is running...
-```
-
-*Note that you will not need to you run this file until you are running your `game` file in Iteration 3. Prior to that, you should strive to use TDD to drive your code. You should check the functionality of your application by running your tests via `npm test`.*
-
-
-## Where to Add Your Code
-
-**Create all of your feature code files in the `src` directory.** Use the `module.exports` and `require` syntax to share code across files.
-
-## How to View Your Code in Action
-
-Once you are working through Iteration 3, you will want to run the `node index.js` command in your terminal to run the game.
-
-When the game is functioning appropriately, you will be prompted for each question, have the opportunity to select an answer, and will be given feedback. You will be able to play through the entire deck of cards:
-
-![flash cards example gif](https://media.giphy.com/media/1zkb1q58eTiTH6D7wc/giphy.gif)
+### Abstract:
+This project is a flashcard study app that can be used to prep as a JavaScript study aid. The game is fully playalbe in the terminal, and also can calculate the percentage of questions that are answered correctly.
 
 ---
+### Installation Instructions:
+1. Go to the following link: https://github.com/ben-rosner-williamsburg/flashcards
+2. Clone down the repo to your local machine
+3. In your machine's Terminal when the repo is the current directory, type in `node index.js`
+4. Start playing!
+---
+### Preview of App:
+![Flashcards Screenshot](assets/flashcards_screenshot.png)
 
-## Test Files Organization
+---
+### Context:
+This was my Mod 2 first project for my Front End Engineering course at Turing School for Software and Design. I had three days to work on it.
 
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
+---
+### Contributors:
+#### Dev Team:
+- [Ben Rosner](https://github.com/ben-rosner-williamsburg)
+#### Project Manager:
+- Robbie Jaeger
+---
+### Learning Goals:
+- Contribute code to an partially constructed application
+- Follow spec/prompts to make a working application
+- Write modular, reusable code that follows SRP (Single Responsibility Principle)
+- Implement a robust testing suite using TDD
+---
+### Wins + Challenges:
 
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `card-test.js`.
-
-## Running Your Tests
-
-Run your test suite using the command:
-
-```bash
-npm test
-```
+- Wins
+  - I was able to finish through iteration 3 of the project.
+  - I was able to implement Mocha and Chai tests to implement a BDD approach to testing my code.
+  - I was able to use the single responsibility principle fairly well.
+- Challenges
+  - Completing a project in such a short span of time was extremely challenging.
+  - Figuring out how to run the startGame functionality.
+  - The createRound functionality was very difficult to figure out.
+---
