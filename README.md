@@ -1,7 +1,7 @@
 # Flashcards
 
 ### Abstract:
-This project is a flashcard study app that can be used to prep as a JavaScript study aid. The game is fully playalbe in the terminal, and also can calculate the percentage of questions that are answered correctly.
+This project is a flashcard study app that can be used to prep as a JavaScript study aid. The game is fully playable in the terminal, and also can calculate the percentage of questions that are answered correctly.
 
 ---
 ### Installation Instructions:
